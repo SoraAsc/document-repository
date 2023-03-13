@@ -7,6 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DocumentRepositoryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DocumentRepositoryApplication.class, args);
-		
 	}
 }

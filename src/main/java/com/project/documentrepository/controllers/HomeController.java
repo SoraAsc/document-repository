@@ -5,18 +5,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+	// Routes - Geral
 	@GetMapping("/")
-	public String index() {
+	public String showIndex() {
 		return "login";
 	}
 	
-	@GetMapping("/dashboard")
-	public String userDashboard() {
+	// Routes - Administrator
+	@GetMapping("/administrator")
+	public String showAdministratorDashboard() {
 		return "administrator/dashboard";
 	}
 	
-//	@GetMapping("/dashboard")
-//	public String administratorDashboard() {
-//		return "administrator/dashboard";
+	@GetMapping("/administrator/users")
+	public String showUsers() {
+		return "administrator/users";
+	}
+	
+	@GetMapping("/administrator/repositories")
+	public String showRepositories() {
+		return "administrator/repositories";
+	}
+//	
+//	// Routes - User
+//	@GetMapping("/user")
+//	public String showUserDashboard() {
+//		return "user/dashboard";
 //	}
 }
