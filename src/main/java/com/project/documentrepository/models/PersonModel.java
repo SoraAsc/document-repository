@@ -1,47 +1,38 @@
 package com.project.documentrepository.models;
 
-import java.sql.Date;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
-@Entity
-@Table(name = "Person")
-public abstract class PersonModel {
+@MappedSuperclass
+public class PersonModel extends BDModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Fields
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "name", length = 128, nullable = false)
+	private String name;
 	
-	@Column(name = "name")
-	protected String name;
+	@Column(name = "cpf", length = 14, unique=true)
+	private String cpf;
 	
-	@Column(name = "cpf")
-	protected String cpf;
+	@Column(name = "email", length = 128, unique=true)
+	private String email;
 	
-	@Column(name = "email")
-	protected String email;
+	@Column(name = "indentification", length = 128, nullable = false)
+	private String indentification;
 	
-	@Column(name = "indentification")
-	protected String indentification;
+	@Column(name = "password", length = 128, nullable = false)
+	private String password;
 	
-	@Column(name = "password")
-	protected String password;
+	@OneToMany
+	private List<TelephoneModel> telephone;
 	
-	@CreatedDate
-    private Date createdDate;
-
-    @LastModifiedDate
-    private Date lastModifiedDate;
-
+	@OneToOne
+	private TelephoneModel address;
+	
 	// Method - Getters And Setters
 	public String getName() {
 		return name;
@@ -75,16 +66,12 @@ public abstract class PersonModel {
 		this.indentification = indentification;
 	}
 
-	public int getId() {
-		return id;
+	public List<TelephoneModel> getTelephone() {
+		return telephone;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
+	public void setTelephone(List<TelephoneModel> telephone) {
+		this.telephone = telephone;
 	}
 
 	public void setPassword(String password) {
