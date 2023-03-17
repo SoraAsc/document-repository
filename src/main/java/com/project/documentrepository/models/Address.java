@@ -1,22 +1,21 @@
 package com.project.documentrepository.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Address")
-public class AddressModel extends BDModel {
+@Table(name="address")
+public class Address extends BD {
 	private static final long serialVersionUID = 1L;
 	// Fields
-	
-	
+	@OneToOne
+	@JoinColumn(name = "administrator_id")
+	private Administrator administrator;
 	
 	@OneToOne
-	private AdministratorModel administrator;
-	
-	@OneToOne
-	private UserModel user;
+	@JoinColumn(name = "user_id")
+	private User user;
 	// Method - Getters And Setters
 }

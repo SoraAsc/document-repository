@@ -1,8 +1,8 @@
 package com.project.documentrepository.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import com.project.documentrepository.models.AdministratorModel;
+import com.project.documentrepository.models.Administrator;
 
-public interface AdministratorRepository extends CrudRepository<AdministratorModel, Integer> {
+public interface AdministratorRepository extends CrudRepository<Administrator, Integer> {
 	
 }

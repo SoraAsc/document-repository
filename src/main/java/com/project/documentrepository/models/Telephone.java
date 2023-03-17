@@ -2,12 +2,13 @@ package com.project.documentrepository.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Telephone")
-public class TelephoneModel extends BDModel {
+@Table(name="telephone")
+public class Telephone extends BD {
 	private static final long serialVersionUID = 1L;
 	// Fields
 	@Column(name = "dd", length=2, nullable=false)
@@ -20,10 +21,12 @@ public class TelephoneModel extends BDModel {
 	private String number;
 	
 	@ManyToOne
-	private AdministratorModel administrator;
+	@JoinColumn(name = "administrator_id")
+	private Administrator administrator;
 	
 	@ManyToOne
-	private AdministratorModel User;
+	@JoinColumn(name = "user_id")
+	private User User;
 	
 	// Method - Getters And Setters
 	public String getDd() {
@@ -50,19 +53,19 @@ public class TelephoneModel extends BDModel {
 		this.number = number;
 	}
 
-	public AdministratorModel getAdministrator() {
+	public Administrator getAdministrator() {
 		return administrator;
 	}
 
-	public void setAdministrator(AdministratorModel administrator) {
+	public void setAdministrator(Administrator administrator) {
 		this.administrator = administrator;
 	}
 
-	public AdministratorModel getUser() {
+	public User getUser() {
 		return User;
 	}
 
-	public void setUser(AdministratorModel user) {
+	public void setUser(User user) {
 		User = user;
 	}
 }

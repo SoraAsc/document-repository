@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @MappedSuperclass
-public class PersonModel extends BDModel implements Serializable {
+public class Person extends BD implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// Fields
 	@Column(name = "name", length = 128, nullable = false)
@@ -28,10 +30,12 @@ public class PersonModel extends BDModel implements Serializable {
 	private String password;
 	
 	@OneToMany
-	private List<TelephoneModel> telephone;
+	@JoinTable(inverseJoinColumns=@JoinColumn(name = "telephone_id"))
+	private List<Telephone> telephone;
 	
 	@OneToOne
-	private TelephoneModel address;
+	@JoinColumn(name = "id_address")
+	private Address address;
 	
 	// Method - Getters And Setters
 	public String getName() {
@@ -66,11 +70,11 @@ public class PersonModel extends BDModel implements Serializable {
 		this.indentification = indentification;
 	}
 
-	public List<TelephoneModel> getTelephone() {
+	public List<Telephone> getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(List<TelephoneModel> telephone) {
+	public void setTelephone(List<Telephone> telephone) {
 		this.telephone = telephone;
 	}
 
